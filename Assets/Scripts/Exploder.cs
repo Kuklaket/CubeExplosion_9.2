@@ -9,6 +9,8 @@ public class Exploder : MonoBehaviour
     [SerializeField] private SpawnerCube _spawnerCube;
     [SerializeField] private LayerMask _layerMask;
 
+    private int _countSides = 3;
+
     private void OnEnable()
     {
         _spawnerCube.SpawnCompleted += Explode;
@@ -35,7 +37,7 @@ public class Exploder : MonoBehaviour
     {
         Vector3 explodePosition = cube.transform.position;
         Collider[] cubesForExplosion = Physics.OverlapSphere(explodePosition, _radius, _layerMask);
-        float powerModifier = (cube.transform.localScale.x + cube.transform.localScale.y + cube.transform.localScale.z) / 3;
+        float powerModifier = (cube.transform.localScale.x + cube.transform.localScale.y + cube.transform.localScale.z) / _countSides;
 
         foreach (Collider explodableCube in cubesForExplosion)
         {

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,16 +12,17 @@ public class Exploder : MonoBehaviour
 
     private void OnEnable()
     {
-        _spawnerCube.SpawnCompleted += Explode;
-        _spawnerCube.CallExploder += ExplodeAll;
+        _spawnerCube.SpawnCompleted += PushAllChilds;
+        _spawnerCube.SpawnNotCompleted += PushAllCubes;
     }
 
     private void OnDisable()
     {
-        _spawnerCube.SpawnCompleted -= Explode;
+        _spawnerCube.SpawnCompleted -= PushAllChilds;
+        _spawnerCube.SpawnNotCompleted -= PushAllCubes;
     }
 
-    public void Explode(Collider cubePosition, List<Rigidbody> cubesForExplosion)
+    private void PushAllChilds(Collider cubePosition, List<Rigidbody> cubesForExplosion)
     {
         Vector3 explodePosition = cubePosition.transform.position;
 
@@ -33,7 +33,7 @@ public class Exploder : MonoBehaviour
         cubesForExplosion.Clear();
     }
 
-    public void ExplodeAll(Collider cube)
+    private void PushAllCubes(Collider cube)
     {
         Vector3 explodePosition = cube.transform.position;
         Collider[] cubesForExplosion = Physics.OverlapSphere(explodePosition, _radius, _layerMask);
@@ -43,14 +43,10 @@ public class Exploder : MonoBehaviour
         {
             if (explodableCube.TryGetComponent<Rigidbody>(out Rigidbody cubeRigidbody))
             {
-                float forse = _force / powerModifier;
+                float forсe = _force / powerModifier;
                 float radius = _radius / powerModifier;
 
-                cubeRigidbody.AddExplosionForce(forse, explodePosition, radius);
-
-                Debug.Log("Модификатор силы взрыва " + powerModifier);
-                Debug.Log("Сила взрыва " + forse);
-                Debug.Log("Радиус взрыва " + radius);
+                cubeRigidbody.AddExplosionForce(forсe, explodePosition, radius);
             }
         }
     }

@@ -556,7 +556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 963194229}
   _camera: {fileID: 963194227}
-  _maxDistance: 10
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -841,6 +840,7 @@ GameObject:
   - component: {fileID: 1410440595}
   - component: {fileID: 1410440598}
   - component: {fileID: 1410440599}
+  - component: {fileID: 1410440600}
   m_Layer: 0
   m_Name: SpawnArena
   m_TagString: Untagged
@@ -896,7 +896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fe7def1be3c734d8a51c66e091e576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rayCollisionCheck: {fileID: 963194231}
   _cube: {fileID: 1450500183573937605, guid: 0e8c504fac5e97540b0c1edfee4c0e98, type: 3}
   _spawnZone: {fileID: 1410440595}
 --- !u!114 &1410440599
@@ -913,10 +912,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radius: 100
   _force: 100
-  _spawnerCube: {fileID: 1410440598}
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1410440600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410440594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f98db6c7f3708d4ba96e2501b1562de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rayCollisionCheck: {fileID: 963194231}
+  _spawnerCubes: {fileID: 1410440598}
+  _exploder: {fileID: 1410440599}
 --- !u!1 &1645531485
 GameObject:
   m_ObjectHideFlags: 0
